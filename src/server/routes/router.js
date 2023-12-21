@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Client = require("../../models/Client");
+const Score = require("../../models/Score");
 
 // Ruta base
 router.get('/', (req, res) => {
@@ -28,15 +29,15 @@ router.get('/clients/:id', (req, res) => {
 
     const id = req.params.id;
 
-    Client.getClientById(id, (err, client)=>{
+    Client.getClientById(id, (err, clientInfo)=>{
         if (err) {
             res.status(500).send(err.message);
         }
-        if (client === null) {
+        if (clientInfo === null) {
             res.status(404).send("Cliente no encontrado");
         }
         else{
-            res.json(client);
+            res.json(clientInfo);
         }
     });
 });
@@ -62,7 +63,7 @@ router.post('/clients/', async (req, res) => {
 
     try {
         const clientId = await Client.addClientWithTransaction({name,rut,salary,savings},messages,debts);
-        res.status(201).send('Cliente añadido con id:', clientId);
+        res.status(201).send({"status": "Cliente creado con Id: ", clientId});
     } catch (err) {
         if (err.code === 'SQLITE_CONSTRAINT') {
             res.status(409).send('Un cliente con el mismo RUT ya existe.');
@@ -73,8 +74,36 @@ router.post('/clients/', async (req, res) => {
 });
 
 // Ruta para obtener puntaje de un cliente en específico
-router.get('/clients/:id/score', (req, res) => {
-    res.json({"score": "puntaje"});
+router.get('/clients/:id/score', async (req, res) => {
+
+    try {
+        const id = req.params.id;
+        Client.getClientById(id, async (err, clientInfo) => {
+            if (err) {
+                return res.status(500).send(err.message);
+            }
+            if (clientInfo === null) {
+                return res.status(404).send("Cliente no encontrado");
+            }
+            else {
+                const score = await Score.getClientScoreById(clientInfo);
+                res.json({"score": score});
+            }
+        });
+    } catch (error) {
+        res.status(500).send("Error al procesar la solicitud");
+    }
+});
+
+router.get('/clients/:id/complex-score', async (req, res) => {
+
+    const id = req.params.id;
+
+    const clientInfo = await Client.getClientById(id);
+
+    const score = await Score.getClientComplexScoreById(clientInfo);
+    
+    res.json({"score avanzado": score});
     // Lógica para obtener estos datos
 });
 

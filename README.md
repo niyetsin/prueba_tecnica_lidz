@@ -22,7 +22,7 @@ Para instalar y ejecutar esta API, sigue estos pasos:
 
 3. npm install
 
-4. npm start
+4. npm run dev
 ```
 ## Estructura del proyecto
 ```bash
@@ -53,6 +53,7 @@ Puedes utilizar tu herramienta de preferencia para hacer peticiones a la API. En
 3. GET /clients/:id : Obtiene información de un cliente específico dada un Id
 4. GET /clients-to-do-follow-up : Obtiene información de los clientes que no han registrado mensajes los últimos 7 días
 5. GET /clients/:id/score : Obtiene un **Score** de un cliente específico dada un Id
+6. GET /clients/:id/complex-score : Obtiene un **Score** de un cliente específico dada un Id con un algoritmo más complejo
 
 ## Ejemplo
 
@@ -63,6 +64,20 @@ curl --location --request GET http://localhost:3000/clients/3
 ```
 
 ## Algoritmo Score
+
+Para poder obtener el **score** de un cliente se consideraron los siguientes criterios:
+
+- El salario, con un factor de 0.000006
+- El monto ahorrado, con un factor de 0.000003
+- El monto en deuda, con un factor de 0.000003
+- Morosidad:
+    - Una penalización de morosidad de 15 si posee alguna deuda con mayor tiempo a 30 días desde la fecha actual
+    - Una penalizacion de morosidad de 20 si posee alguna deuda con mayor tiempo a 60 días desde la fecha actual
+- Mensajes:
+    - Si el cliente posee más de 10 mensajes, su puntaje será aumentado por un factor de 0.8 puntos por mensaje
+    - Si el cliente posee menos de 10 mensajes, su puntaje será aumentado por un factor de 0.3 puntos por mensaje
+
+## Algoritmo Score Avanzado
 
 
 
