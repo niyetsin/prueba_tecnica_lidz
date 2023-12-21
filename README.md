@@ -39,18 +39,18 @@ npm start
 
 ## Endpoints Disponibles
 
-1. GET /api/clients : Obtiene información de todos los clientes
-2. POST /api/clients : Agrega información de un nuevo cliente
-3. GET /api/clients/:id : Obtiene información de un cliente específico dada un Id
-4. GET /api/clients-to-do-follow-up : Obtiene información de los clientes que no han registrado mensajes los últimos 7 días
-5. GET /api/clients/:id/score : Obtiene un **Score** de un cliente específico dada un Id
+1. GET /clients : Obtiene información de todos los clientes
+2. POST /clients : Agrega información de un nuevo cliente
+3. GET /clients/:id : Obtiene información de un cliente específico dada un Id
+4. GET /clients-to-do-follow-up : Obtiene información de los clientes que no han registrado mensajes los últimos 7 días
+5. GET /clients/:id/score : Obtiene un **Score** de un cliente específico dada un Id
 
 ## Ejemplo
 
 - Obtener la información de un cliente con id 3
 
 ```bash
-curl --location --request GET 'http://localhost:3000/api/clients/3'
+curl --location --request GET 'http://localhost:3000/clients/3'
 ```
 
 ## Algoritmo Score
