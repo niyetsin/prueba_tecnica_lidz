@@ -187,7 +187,7 @@ function insertarDatosDePrueba() {
     });
 }
 
-//ejecución de función de inicializar datos
+//Ejecución de función de inicializar datos
 inicializarBaseDeDatos();
 
 

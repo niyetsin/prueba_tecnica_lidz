@@ -67,6 +67,7 @@ curl --location --request GET http://localhost:3000/clients/3
 
 Para poder obtener el **score** de un cliente se consideraron los siguientes criterios:
 
+- Se considera un puntaje base de 15 puntos para considerar la posibilidad mínima de un cliente registrado, este puntaje irá variando según el resto de información que se tenga del cliente.
 - El salario, con un factor de 0.000006
 - El monto ahorrado, con un factor de 0.000003
 - El monto en deuda, con un factor de 0.000003
@@ -107,6 +108,12 @@ Finalmente lo que retorna este algoritmo es un listado con el score de las propi
     }
 ]
 ```
+
+## Posibles mejoras
+
+Es posible mejorar la modularización de ciertos procesos como la obtención de datos de clientes por Id, así como también es posible seguir expandiendo esta API según las posibles necesidades que se requieran dentro de la empresa
+
+Adicionalmente a la implementación de este nuevo algoritmo hay varias cosas que se pueden implementar para mejorar aún más la precision de este **score**, por ejemplo se puede agregar un algoritmo de machine learning para mejorar la precisión de este algoritmo. En base a los datos existentes. Ya que se pueden encontrar relaciones entre la variacion de potenciales clientes segun patrones de comportamiento, ya sean cantidad de mensajes enviados, ubicación de cliente vs ubicación de la propiedad. Así como también se pueden considerar otros antecedentes financieros con la finalidad de poder categorizar de mejor manera a los clientes morozos, dado que no solo hay un tipo de cliente moroso, etc...
 
 ## LICENSE
 

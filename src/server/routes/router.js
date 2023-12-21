@@ -5,7 +5,6 @@ const Score = require("../../models/Score");
 
 // Ruta base
 router.get('/', (req, res) => {
-    // Lógica para obtener y devolver todos los clientes
     res.json({"message": "Bienvenido"});
 });
 
@@ -42,7 +41,7 @@ router.get('/clients/:id', (req, res) => {
     });
 });
 
-// Ruta para obtener información de los clientes que el último mensaje haya sido hace más de 7 días
+// Ruta para obtener información de los clientes cuyo último mensaje haya sido hace más de 7 días
 router.get('/clients-to-do-follow-up', (req, res) => {
     Client.getClientsToDoFollowUp((err, clients)=>{
         if (err) {
@@ -95,6 +94,7 @@ router.get('/clients/:id/score', async (req, res) => {
     }
 });
 
+// Ruta para obtener puntajes y propiedades interesadas de un cliente en específico utlizando un algoritmo diferente
 router.get('/clients/:id/complex-score', async (req, res) => {
 
     try {

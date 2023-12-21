@@ -1,15 +1,11 @@
 const db = require('../db/database.js')
 
-class Propiedad { 
+class Propiedad {
+    //Método para obtener todas los prodiedades que el cliente está interesado dada un ClientId
     static async getPropiedadesByClientId(clientId) {
         return new Promise((resolve, reject) => {
-            const sql = `
-                SELECT p.* 
-                FROM Property p
-                INNER JOIN ClientProperty cp ON p.id = cp.propertyId
-                WHERE cp.clientId = ?
-            `;
-
+            //Query para obtener la información de las propiedades que está interesado un cliente por su Id
+            const sql = `SELECT pro.* FROM Property pro INNER JOIN ClientProperty clientP ON p.id = clientP.propertyId WHERE clientP.clientId = ?`;
             db.all(sql, [clientId], (err, rows) => {
                 if (err) {
                     reject(err);
