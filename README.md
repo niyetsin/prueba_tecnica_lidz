@@ -77,9 +77,36 @@ Para poder obtener el **score** de un cliente se consideraron los siguientes cri
     - Si el cliente posee más de 10 mensajes, su puntaje será aumentado por un factor de 0.8 puntos por mensaje
     - Si el cliente posee menos de 10 mensajes, su puntaje será aumentado por un factor de 0.3 puntos por mensaje
 
+La respuesta utilizando este algoritmo es el siguiente:
+
+```bash
+{
+    "score": 100
+}
+```
+
 ## Algoritmo Score Avanzado
 
+Para este algoritmo se consideraron la implementación de dos nuevas tablas para la base de datos, ClientProperty y Property, las cuales se describen como lo siguiente:
 
+- Property: Muestra la información de las propiedades disponibles, junto a su valor en UF y ubicación.
+
+- ClientProperty: Muestra las propiedades que el cliente está interesado por comprar mediante el uso de las llaves clientId (Llave primaria de Client) y PropertyId (Llave primaria de tabla Property)
+
+Esto se hizo con la finalidad de no solo considerar datos referentes al usuario sino, también relacionarlos a las propiedades que el cliente está interesado por adquirir. En donde el algoritmo toma en cuenta el valor de la propiedad en UF y realizar una comparación con el poder adquisitivo del cliente, considerando principalmente sus ahorros, debido a que podriamos considerar que el cliente quiere adquirir la propiedad mediante el uso de un crédito hipotecario, debe contar con al menos entre un 20% y 30% del valor total de la propiedad.
+
+Es por esto que realizamos una comparacion de valor de la o las pripiedades que el cliente está interesado por adquirir y se realizar su comparación con su ahorro.
+
+Finalmente lo que retorna este algoritmo es un listado con el score de las propiedades que está interesado y muestra algo como lo siguiente:
+
+```bash
+[
+    {
+        "PropietyId": 1,
+        "score": 100
+    }
+]
+```
 
 ## LICENSE
 

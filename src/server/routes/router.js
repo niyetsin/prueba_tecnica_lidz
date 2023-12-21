@@ -97,14 +97,23 @@ router.get('/clients/:id/score', async (req, res) => {
 
 router.get('/clients/:id/complex-score', async (req, res) => {
 
-    const id = req.params.id;
-
-    const clientInfo = await Client.getClientById(id);
-
-    const score = await Score.getClientComplexScoreById(clientInfo);
-    
-    res.json({"score avanzado": score});
-    // Lógica para obtener estos datos
+    try {
+        const id = req.params.id;
+        Client.getClientById(id, async (err, clientInfo) => {
+            if (err) {
+                return res.status(500).send(err.message);
+            }
+            if (clientInfo === null) {
+                return res.status(404).send("Cliente no encontrado");
+            }
+            else {
+                const puntajes = await Score.getClientComplexScoreById(clientInfo);
+                res.json(puntajes);
+            }
+        });
+    } catch (error) {
+        res.status(500).send("Error al procesar la solicitud");
+    }
 });
 
 module.exports = router;

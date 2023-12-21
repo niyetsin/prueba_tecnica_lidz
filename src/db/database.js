@@ -99,7 +99,7 @@ function insertarDatosDePrueba() {
                 }
                 if (!row) {
                     const clientes = [
-                        { name: "Juan Pérez", rut: "12345678-9", salary: 1500.00, savings: 5000.00 },
+                        { name: "Juan Pérez", rut: "12345678-9", salary: 1500000.00, savings: 50000000.00 },
                         { name: "María López", rut: "98765432-1", salary: 2000.00, savings: 3500.00 },
                         { name: "Carlos Gómez", rut: "11223344-5", salary: 1800.00, savings: 4500.00 }
                     ];
