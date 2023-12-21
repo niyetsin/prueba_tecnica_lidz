@@ -50,7 +50,7 @@ npm start
 - Obtener la información de un cliente con id 3
 
 ```bash
-curl --location --request GET 'http://localhost:3000/clients/3'
+curl --location --request GET http://localhost:3000/clients/3
 ```
 
 ## Algoritmo Score
