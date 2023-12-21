@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(cors());
 //Routes
-app.use(require('./routes/index'));
+app.use(require('./routes/router'));
 
 
 //Inicio servidor

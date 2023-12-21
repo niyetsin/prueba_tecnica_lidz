@@ -1,16 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Client = require("../../models/Client");
-const Messages = require("../../models/Message");
-const Deudas = require("../../models/Deudas");
-
 
 // Ruta base
 router.get('/', (req, res) => {
     // Lógica para obtener y devolver todos los clientes
     res.json({"message": "Bienvenido"});
 });
-
 
 // Ruta para obtener todos los clientes
 router.get('/clients', (req, res) => {
@@ -45,7 +41,6 @@ router.get('/clients/:id', (req, res) => {
     });
 });
 
-
 // Ruta para obtener información de los clientes que el último mensaje haya sido hace más de 7 días
 router.get('/clients-to-do-follow-up', (req, res) => {
     Client.getClientsToDoFollowUp((err, clients)=>{
@@ -60,7 +55,6 @@ router.get('/clients-to-do-follow-up', (req, res) => {
         }
     });
 });
-
 
 // Ruta para crear un nuevo cliente junto con sus mensajes y deudas.
 router.post('/clients/', async (req, res) => {
@@ -78,12 +72,10 @@ router.post('/clients/', async (req, res) => {
     }
 });
 
-
 // Ruta para obtener puntaje de un cliente en específico
 router.get('/clients/:id/score', (req, res) => {
     res.json({"score": "puntaje"});
     // Lógica para obtener estos datos
 });
-
 
 module.exports = router;

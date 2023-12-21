@@ -4,14 +4,25 @@
 
 Esta API proporciona una interfaz para la gestión de clientes, mensajes y deudas en el contexto de una empresa inmobiliaria.
 
+## Requisitos
+
+```bash
+- Node.js v20.10.0
+- npm v10.2.3
+- SQLite v5.1.6
+```
 ## Instalación
 
 Para instalar y ejecutar esta API, sigue estos pasos:
 
 ```bash
-git clone [URL del repositorio]
-cd [Nombre del directorio del repositorio]
-npm install
+1. git clone [URL del repositorio]
+
+2. cd [Nombre del directorio del repositorio]
+
+3. npm install
+
+4. npm start
 ```
 ## Estructura del proyecto
 ```bash
@@ -26,16 +37,14 @@ src/
 └── server/
 │ └──index.js // Este es el archivo principal del servidor
 ├── routes/
-│ └── index.js
+│ └── router.js
 
 
 ```
 
 ## Uso
 
-```bash
-npm start
-```
+Puedes utilizar tu herramienta de preferencia para hacer peticiones a la API. En este caso, se utilizó [Postman](https://www.postman.com/).
 
 ## Endpoints Disponibles
 
